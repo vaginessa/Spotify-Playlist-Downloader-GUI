@@ -127,7 +127,7 @@ namespace Spotify_Downloader
 
                 {
                     Process dnlf = new Process();
-                    dnlf.StartInfo.FileName = @"node.exe";
+                    dnlf.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
                     dnlf.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user, playlist);
                     dnlf.StartInfo.UseShellExecute = false;
                     dnlf.StartInfo.RedirectStandardOutput = false;
@@ -137,7 +137,7 @@ namespace Spotify_Downloader
                 else if (!checkBox1.Checked)
                 {
                     Process dnl = new Process();
-                    dnl.StartInfo.FileName = @"node.exe";
+                    dnl.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
                     dnl.StartInfo.Arguments = string.Format("main.js -u {0} -p {1}", user, playlist);
                     dnl.StartInfo.UseShellExecute = false;
                     dnl.StartInfo.RedirectStandardOutput = false;

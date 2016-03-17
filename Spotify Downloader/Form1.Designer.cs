@@ -158,7 +158,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 26;
-            this.label2.Text = "V1.0.5";
+            this.label2.Text = "V1.0.6";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // checkBox1
