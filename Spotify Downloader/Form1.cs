@@ -143,5 +143,10 @@ namespace Spotify_Downloader
         {
 
         }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
