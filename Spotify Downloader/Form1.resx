@@ -117,24 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox4.Text" xml:space="preserve">
-    <value>Songs will be saved to: C:\Users\youruser\spotify-mp3s
-
-First Time Setup (Only needs to be done right after downloading)
-
-Step 1: Enter Spotify Login Credentials (WARNING CREDENTIALS ARE STORED IN PLANE TEXT)
-Step 2: Click the "npm install" button and wait for it to put some shit in this window.
-
-How To Get Playlist URL
-
-Go to the Spotify Webplayer and Navigate to the Playlist you want to download.
-Your URL should look something like this:
-
-https://play.spotify.com/user/spotify/playlist/6RsopNg2yrLjKiu00jaCyi
-
-Paste that in to the Spotify Playlist URL Textbox
-</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

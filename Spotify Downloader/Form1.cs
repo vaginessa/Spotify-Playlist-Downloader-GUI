@@ -49,7 +49,9 @@ namespace Spotify_Downloader
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            textBox4.Text = File.ReadAllText("readmegui.txt");
+            
+     
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -115,7 +117,7 @@ namespace Spotify_Downloader
             Match match = Regex.Match(text, @"https://play.spotify.com/user/([A-Za-z0-9\-]+)/playlist/([A-Za-z0-9\-]+)");
             string user = match.Groups[1].Value;
             string playlist = match.Groups[2].Value;
-
+           
             Process dnl = new Process();
             dnl.StartInfo.FileName = @"node.exe";
             dnl.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user, playlist);
@@ -124,6 +126,21 @@ namespace Spotify_Downloader
             dnl.Start();
 
 
+
+        }
+
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
 
         }
     }

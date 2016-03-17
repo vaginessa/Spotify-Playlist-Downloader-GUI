@@ -41,11 +41,12 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(485, 155);
+            this.button2.Location = new System.Drawing.Point(485, 90);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(66, 25);
             this.button2.TabIndex = 11;
@@ -61,7 +62,6 @@
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(539, 223);
             this.textBox4.TabIndex = 12;
-            this.textBox4.Text = resources.GetString("textBox4.Text");
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged_1);
             // 
             // textBox1
@@ -115,7 +115,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(485, 126);
+            this.button4.Location = new System.Drawing.Point(485, 122);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(66, 23);
             this.button4.TabIndex = 18;
@@ -151,19 +151,30 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(12, 157);
+            this.button5.Location = new System.Drawing.Point(12, 148);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(107, 23);
+            this.button5.Size = new System.Drawing.Size(90, 32);
             this.button5.TabIndex = 22;
             this.button5.Text = "Start Download";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 412);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "V1.0.1";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 429);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox6);
@@ -199,6 +210,7 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label2;
     }
 }
 
