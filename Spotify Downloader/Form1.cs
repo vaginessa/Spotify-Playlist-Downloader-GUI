@@ -24,8 +24,9 @@ namespace Spotify_Downloader
         public Form1()
         {
             InitializeComponent();
-        }
 
+        }
+        
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
@@ -49,7 +50,7 @@ namespace Spotify_Downloader
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            textBox4.Text = File.ReadAllText("readmegui.txt");
+            richTextBox1.Text = File.ReadAllText("readmegui.txt");
             
      
         }
@@ -62,13 +63,15 @@ namespace Spotify_Downloader
 
         private void button2_Click_2(object sender, EventArgs e)
         {
+
             Process npm = new Process();
             npm.StartInfo.FileName = @"C:\Program Files\nodejs\npm.cmd";
             npm.StartInfo.Arguments = "install";
             npm.StartInfo.UseShellExecute = false;
             npm.StartInfo.RedirectStandardOutput = true;
             npm.Start();
-            textBox4.Text = npm.StandardOutput.ReadToEnd();
+            richTextBox1.Text = npm.StandardOutput.ReadToEnd();
+           
         }
 
         private void label1_Click_1(object sender, EventArgs e)
@@ -93,6 +96,7 @@ namespace Spotify_Downloader
 
         private void button3_Click(object sender, EventArgs e)
         {
+
             string[] lines = File.ReadAllLines("main.js");
             lines[23] = string.Format("USERNAME = \"{0}\"" , textBox1.Text);
             lines[25] = string.Format("PASSWORD = \"{0}\"", textBox5.Text);
@@ -102,8 +106,8 @@ namespace Spotify_Downloader
         }
 
         private void button4_Click(object sender, EventArgs e)
-        { 
-            textBox4.Text = File.ReadAllText("readmegui.txt");
+        {
+            richTextBox1.Text = File.ReadAllText("readmegui.txt");
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -113,17 +117,34 @@ namespace Spotify_Downloader
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string text = textBox6.Text;
-            Match match = Regex.Match(text, @"https://play.spotify.com/user/([A-Za-z0-9\-]+)/playlist/([A-Za-z0-9\-]+)");
-            string user = match.Groups[1].Value;
-            string playlist = match.Groups[2].Value;
-           
-            Process dnl = new Process();
-            dnl.StartInfo.FileName = @"node.exe";
-            dnl.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user, playlist);
-            dnl.StartInfo.UseShellExecute = false;
-            dnl.StartInfo.RedirectStandardOutput = false;
-            dnl.Start();
+            
+                string text = textBox6.Text;
+                Match match = Regex.Match(text, @"https://play.spotify.com/user/([A-Za-z0-9\-]+)/playlist/([A-Za-z0-9\-]+)");
+                string user = match.Groups[1].Value;
+                string playlist = match.Groups[2].Value;
+
+                if (checkBox1.Checked)
+
+                {
+                    Process dnlf = new Process();
+                    dnlf.StartInfo.FileName = @"node.exe";
+                    dnlf.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user, playlist);
+                    dnlf.StartInfo.UseShellExecute = false;
+                    dnlf.StartInfo.RedirectStandardOutput = false;
+                    dnlf.Start();
+                }
+
+                else if (!checkBox1.Checked)
+                {
+                    Process dnl = new Process();
+                    dnl.StartInfo.FileName = @"node.exe";
+                    dnl.StartInfo.Arguments = string.Format("main.js -u {0} -p {1}", user, playlist);
+                    dnl.StartInfo.UseShellExecute = false;
+                    dnl.StartInfo.RedirectStandardOutput = false;
+                    dnl.Start();
+                
+
+            }
 
 
 
@@ -145,6 +166,11 @@ namespace Spotify_Downloader
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
 
         }
