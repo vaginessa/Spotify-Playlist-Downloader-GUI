@@ -117,7 +117,9 @@ namespace Spotify_Downloader
 
         private void button5_Click(object sender, EventArgs e)
         {
-            
+            if (!string.IsNullOrWhiteSpace(textBox6.Text))
+
+            {
                 string text = textBox6.Text;
                 Match match = Regex.Match(text, @"https://play.spotify.com/user/([A-Za-z0-9\-]+)/playlist/([A-Za-z0-9\-]+)");
                 string user = match.Groups[1].Value;
@@ -132,6 +134,7 @@ namespace Spotify_Downloader
                     dnlf.StartInfo.UseShellExecute = false;
                     dnlf.StartInfo.RedirectStandardOutput = false;
                     dnlf.Start();
+                    dnlf.WaitForExit();
                 }
 
                 else if (!checkBox1.Checked)
@@ -142,12 +145,98 @@ namespace Spotify_Downloader
                     dnl.StartInfo.UseShellExecute = false;
                     dnl.StartInfo.RedirectStandardOutput = false;
                     dnl.Start();
-                
+                    dnl.WaitForExit();
+
+                }
+            
+
+            else
+            {
+
 
             }
 
+        }
+
+            if (!string.IsNullOrWhiteSpace(textBox2.Text))
+
+            {
+                string text2 = textBox2.Text;
+                Match match2 = Regex.Match(text2, @"https://play.spotify.com/user/([A-Za-z0-9\-]+)/playlist/([A-Za-z0-9\-]+)");
+                string user2 = match2.Groups[1].Value;
+                string playlist2 = match2.Groups[2].Value;
+
+                if (checkBox1.Checked)
+
+                {
+                    Process dnlf = new Process();
+                    dnlf.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
+                    dnlf.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user2, playlist2);
+                    dnlf.StartInfo.UseShellExecute = false;
+                    dnlf.StartInfo.RedirectStandardOutput = false;
+                    dnlf.Start();
+                    dnlf.WaitForExit();
+
+                }
+
+                else if (!checkBox1.Checked)
+                {
+                    Process dnl = new Process();
+                    dnl.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
+                    dnl.StartInfo.Arguments = string.Format("main.js -u {0} -p {1}", user2, playlist2);
+                    dnl.StartInfo.UseShellExecute = false;
+                    dnl.StartInfo.RedirectStandardOutput = false;
+                    dnl.Start();
+                    dnl.WaitForExit();
+                }
+                else
+                {
+
+                }
+
+           if (!string.IsNullOrWhiteSpace(textBox3.Text))
+
+                    {
+                        string text3 = textBox3.Text;
+                        Match match3 = Regex.Match(text3, @"https://play.spotify.com/user/([A-Za-z0-9\-]+)/playlist/([A-Za-z0-9\-]+)");
+                        string user3 = match3.Groups[1].Value;
+                        string playlist3 = match3.Groups[2].Value;
+
+                        if (checkBox1.Checked)
+
+                        {
+                            Process dnlf = new Process();
+                            dnlf.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
+                            dnlf.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user3, playlist3);
+                            dnlf.StartInfo.UseShellExecute = false;
+                            dnlf.StartInfo.RedirectStandardOutput = false;
+                            dnlf.Start();
+                            dnlf.WaitForExit();
+
+                        }
+
+                        else if (!checkBox1.Checked)
+                        {
+                            Process dnl = new Process();
+                            dnl.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
+                            dnl.StartInfo.Arguments = string.Format("main.js -u {0} -p {1}", user3, playlist3);
+                            dnl.StartInfo.UseShellExecute = false;
+                            dnl.StartInfo.RedirectStandardOutput = false;
+                            dnl.Start();
+                            dnl.WaitForExit();
 
 
+                        }
+
+                        else
+
+                        {
+
+
+                        
+                    }
+                }
+            }
         }
 
         private void textBox2_TextChanged_1(object sender, EventArgs e)
