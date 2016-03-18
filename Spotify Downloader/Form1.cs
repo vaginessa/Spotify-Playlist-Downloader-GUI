@@ -148,14 +148,14 @@ namespace Spotify_Downloader
                     dnl.WaitForExit();
 
                 }
+
+
+                else
+                {
+                    MessageBox.Show("You must at least fill in 1 playlist", "Playlist ERROR", MessageBoxButtons.OK);
+                
             
-
-            else
-            {
-
-
-            }
-
+                 }
         }
 
             if (!string.IsNullOrWhiteSpace(textBox2.Text))
@@ -194,6 +194,7 @@ namespace Spotify_Downloader
 
                 }
 
+            }
            if (!string.IsNullOrWhiteSpace(textBox3.Text))
 
                     {
@@ -235,7 +236,23 @@ namespace Spotify_Downloader
 
                         
                     }
-                }
+              
+            }
+
+           if (checkBox2.Checked)
+
+            {
+                string[] lines = File.ReadAllLines("main.js");
+                lines[25] = string.Format("PASSWORD = \"\"");
+                File.WriteAllLines("main.js", lines);
+
+            }
+
+           else if (!checkBox2.Checked)
+            {
+
+
+
             }
         }
 
@@ -260,6 +277,11 @@ namespace Spotify_Downloader
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }

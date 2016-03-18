@@ -45,11 +45,12 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(485, 155);
+            this.button2.Location = new System.Drawing.Point(485, 187);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(66, 25);
             this.button2.TabIndex = 11;
@@ -109,7 +110,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(413, 155);
+            this.button4.Location = new System.Drawing.Point(413, 187);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(66, 25);
             this.button4.TabIndex = 18;
@@ -120,7 +121,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(458, 412);
+            this.label5.Location = new System.Drawing.Point(458, 444);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 13);
             this.label5.TabIndex = 19;
@@ -128,7 +129,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(106, 67);
+            this.textBox6.Location = new System.Drawing.Point(106, 99);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(446, 20);
             this.textBox6.TabIndex = 20;
@@ -136,7 +137,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 96);
+            this.label6.Location = new System.Drawing.Point(21, 102);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 13);
             this.label6.TabIndex = 21;
@@ -145,7 +146,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(12, 148);
+            this.button5.Location = new System.Drawing.Point(12, 180);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(90, 32);
             this.button5.TabIndex = 22;
@@ -156,17 +157,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 412);
+            this.label2.Location = new System.Drawing.Point(12, 444);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
+            this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 26;
-            this.label2.Text = "V1.1";
+            this.label2.Text = "V1.1.5";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(108, 150);
+            this.checkBox1.Location = new System.Drawing.Point(108, 182);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(195, 30);
             this.checkBox1.TabIndex = 29;
@@ -175,7 +176,7 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 186);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 218);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(539, 223);
@@ -184,24 +185,35 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(106, 93);
+            this.textBox2.Location = new System.Drawing.Point(106, 125);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(446, 20);
             this.textBox2.TabIndex = 31;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(106, 119);
+            this.textBox3.Location = new System.Drawing.Point(106, 151);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(446, 20);
             this.textBox3.TabIndex = 32;
             this.textBox3.WordWrap = false;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(430, 63);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(100, 30);
+            this.checkBox2.TabIndex = 33;
+            this.checkBox2.Text = "Wipe Password\r\nAfter Download";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 429);
+            this.ClientSize = new System.Drawing.Size(564, 463);
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.richTextBox1);
@@ -245,6 +257,7 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
 
