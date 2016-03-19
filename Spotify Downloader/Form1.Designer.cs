@@ -161,7 +161,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 26;
-            this.label2.Text = "V1.1.5";
+            this.label2.Text = "V1.1.6";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // checkBox1
@@ -201,7 +201,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(430, 63);
+            this.checkBox2.Location = new System.Drawing.Point(300, 182);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(100, 30);
             this.checkBox2.TabIndex = 33;

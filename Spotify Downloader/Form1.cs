@@ -121,7 +121,7 @@ namespace Spotify_Downloader
 
             {
                 string text = textBox6.Text;
-                Match match = Regex.Match(text, @"https://play.spotify.com/user/([A-Za-z0-9\-]+)/playlist/([A-Za-z0-9\-]+)");
+                Match match = Regex.Match(text, @"https://play.spotify.com/user/([A-Za-z0-9_\-]+)/playlist/([A-Za-z0-9_\-]+)");
                 string user = match.Groups[1].Value;
                 string playlist = match.Groups[2].Value;
 
@@ -162,7 +162,7 @@ namespace Spotify_Downloader
 
             {
                 string text2 = textBox2.Text;
-                Match match2 = Regex.Match(text2, @"https://play.spotify.com/user/([A-Za-z0-9\-]+)/playlist/([A-Za-z0-9\-]+)");
+                Match match2 = Regex.Match(text2, @"https://play.spotify.com/user/([A-Za-z0-9_\-]+)/playlist/([A-Za-z0-9_\-]+)");
                 string user2 = match2.Groups[1].Value;
                 string playlist2 = match2.Groups[2].Value;
 
@@ -199,7 +199,7 @@ namespace Spotify_Downloader
 
                     {
                         string text3 = textBox3.Text;
-                        Match match3 = Regex.Match(text3, @"https://play.spotify.com/user/([A-Za-z0-9\-]+)/playlist/([A-Za-z0-9\-]+)");
+                        Match match3 = Regex.Match(text3, @"https://play.spotify.com/user/([A-Za-z0-9_\-]+)/playlist/([A-Za-z0-9_\-]+)");
                         string user3 = match3.Groups[1].Value;
                         string playlist3 = match3.Groups[2].Value;
 
