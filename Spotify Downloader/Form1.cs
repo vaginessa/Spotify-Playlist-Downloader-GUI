@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Spotify_Downloader
 {
@@ -26,7 +27,8 @@ namespace Spotify_Downloader
             InitializeComponent();
 
         }
-        
+
+        string OutputData;
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
@@ -42,7 +44,7 @@ namespace Spotify_Downloader
 
         }
 
-        
+
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
@@ -51,12 +53,11 @@ namespace Spotify_Downloader
         private void Form1_Load(object sender, EventArgs e)
         {
             richTextBox1.Text = File.ReadAllText("readmegui.txt");
-            
-     
-        }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
+
+
+
+
 
         }
 
@@ -71,7 +72,7 @@ namespace Spotify_Downloader
             npm.StartInfo.RedirectStandardOutput = true;
             npm.Start();
             richTextBox1.Text = npm.StandardOutput.ReadToEnd();
-           
+
         }
 
         private void label1_Click_1(object sender, EventArgs e)
@@ -98,7 +99,7 @@ namespace Spotify_Downloader
         {
 
             string[] lines = File.ReadAllLines("main.js");
-            lines[23] = string.Format("USERNAME = \"{0}\"" , textBox1.Text);
+            lines[23] = string.Format("USERNAME = \"{0}\"", textBox1.Text);
             lines[25] = string.Format("PASSWORD = \"{0}\"", textBox5.Text);
             File.WriteAllLines("main.js", lines);
             textBox5.Text = String.Empty;
@@ -115,8 +116,13 @@ namespace Spotify_Downloader
 
         }
 
+
+
+
         private void button5_Click(object sender, EventArgs e)
         {
+            richTextBox1.Text = String.Empty;
+
             if (!string.IsNullOrWhiteSpace(textBox6.Text))
 
             {
@@ -132,32 +138,63 @@ namespace Spotify_Downloader
                     dnlf.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
                     dnlf.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user, playlist);
                     dnlf.StartInfo.UseShellExecute = false;
-                    dnlf.StartInfo.RedirectStandardOutput = false;
+                    dnlf.StartInfo.RedirectStandardOutput = true;
+                    dnlf.EnableRaisingEvents = true;
+                    dnlf.StartInfo.CreateNoWindow = true;
+                    dnlf.OutputDataReceived += OnOutputDataReceived;
                     dnlf.Start();
-                    dnlf.WaitForExit();
+                    dnlf.BeginOutputReadLine();
+
+                    while (!dnlf.HasExited)
+                    {
+                        Application.DoEvents();
+                        Thread.Sleep(1);
+                    }
+
                 }
 
                 else if (!checkBox1.Checked)
                 {
+
                     Process dnl = new Process();
                     dnl.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
                     dnl.StartInfo.Arguments = string.Format("main.js -u {0} -p {1}", user, playlist);
                     dnl.StartInfo.UseShellExecute = false;
-                    dnl.StartInfo.RedirectStandardOutput = false;
+                    dnl.StartInfo.RedirectStandardOutput = true;
+                    dnl.EnableRaisingEvents = true;
+                    dnl.StartInfo.CreateNoWindow = true;
+                    dnl.Exited += new EventHandler(process_Exited);
+                    dnl.OutputDataReceived += OnOutputDataReceived;
                     dnl.Start();
-                    dnl.WaitForExit();
+                    dnl.BeginOutputReadLine();
+
+                    while (!dnl.HasExited)
+                    {
+                        Application.DoEvents();
+                        Thread.Sleep(1);
+                    }
+
+
+
+
 
                 }
+
+
+
+
+
 
 
                 else
                 {
                     MessageBox.Show("You must at least fill in 1 playlist", "Playlist ERROR", MessageBoxButtons.OK);
-                
-            
-                 }
-        }
 
+
+                }
+            }
+        
+    
             if (!string.IsNullOrWhiteSpace(textBox2.Text))
 
             {
@@ -173,9 +210,19 @@ namespace Spotify_Downloader
                     dnlf.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
                     dnlf.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user2, playlist2);
                     dnlf.StartInfo.UseShellExecute = false;
-                    dnlf.StartInfo.RedirectStandardOutput = false;
+                    dnlf.StartInfo.RedirectStandardOutput = true;
+                    dnlf.EnableRaisingEvents = true;
+                    dnlf.StartInfo.CreateNoWindow = true;
+                    dnlf.OutputDataReceived += OnOutputDataReceived;
                     dnlf.Start();
-                    dnlf.WaitForExit();
+                    dnlf.BeginOutputReadLine();
+
+                    while (!dnlf.HasExited)
+                    {
+                        Application.DoEvents();
+                        Thread.Sleep(1);
+                    }
+
 
                 }
 
@@ -185,9 +232,20 @@ namespace Spotify_Downloader
                     dnl.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
                     dnl.StartInfo.Arguments = string.Format("main.js -u {0} -p {1}", user2, playlist2);
                     dnl.StartInfo.UseShellExecute = false;
-                    dnl.StartInfo.RedirectStandardOutput = false;
+                    dnl.StartInfo.RedirectStandardOutput = true;
+                    dnl.EnableRaisingEvents = true;
+                    dnl.StartInfo.CreateNoWindow = true;
+                    dnl.OutputDataReceived += OnOutputDataReceived;
                     dnl.Start();
-                    dnl.WaitForExit();
+                    dnl.BeginOutputReadLine();
+
+                    while (!dnl.HasExited)
+                    {
+                        Application.DoEvents();
+                        Thread.Sleep(1);
+                    }
+
+
                 }
                 else
                 {
@@ -197,46 +255,183 @@ namespace Spotify_Downloader
             }
            if (!string.IsNullOrWhiteSpace(textBox3.Text))
 
-                    {
+              {
                         string text3 = textBox3.Text;
                         Match match3 = Regex.Match(text3, @"https://play.spotify.com/user/([A-Za-z0-9_\-]+)/playlist/([A-Za-z0-9_\-]+)");
                         string user3 = match3.Groups[1].Value;
                         string playlist3 = match3.Groups[2].Value;
 
-                        if (checkBox1.Checked)
+                if (checkBox1.Checked)
 
-                        {
-                            Process dnlf = new Process();
-                            dnlf.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
-                            dnlf.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user3, playlist3);
-                            dnlf.StartInfo.UseShellExecute = false;
-                            dnlf.StartInfo.RedirectStandardOutput = false;
-                            dnlf.Start();
-                            dnlf.WaitForExit();
+                {
+                    Process dnlf = new Process();
+                    dnlf.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
+                    dnlf.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user3, playlist3);
+                    dnlf.StartInfo.UseShellExecute = false;
+                    dnlf.StartInfo.RedirectStandardOutput = true;
+                    dnlf.EnableRaisingEvents = true;
+                    dnlf.StartInfo.CreateNoWindow = true;
+                    dnlf.OutputDataReceived += OnOutputDataReceived;
+                    dnlf.Start();
+                    dnlf.BeginOutputReadLine();
 
-                        }
-
-                        else if (!checkBox1.Checked)
-                        {
-                            Process dnl = new Process();
-                            dnl.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
-                            dnl.StartInfo.Arguments = string.Format("main.js -u {0} -p {1}", user3, playlist3);
-                            dnl.StartInfo.UseShellExecute = false;
-                            dnl.StartInfo.RedirectStandardOutput = false;
-                            dnl.Start();
-                            dnl.WaitForExit();
-
-
-                        }
-
-                        else
-
-                        {
-
-
-                        
+                    while (!dnlf.HasExited)
+                    {
+                        Application.DoEvents();
+                        Thread.Sleep(1);
                     }
-              
+
+                }
+
+                else if (!checkBox1.Checked)
+                {
+                    Process dnl = new Process();
+                    dnl.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
+                    dnl.StartInfo.Arguments = string.Format("main.js -u {0} -p {1}", user3, playlist3);
+                    dnl.StartInfo.UseShellExecute = false;
+                    dnl.StartInfo.RedirectStandardOutput = true;
+                    dnl.EnableRaisingEvents = true;
+                    dnl.StartInfo.CreateNoWindow = true;
+                    dnl.OutputDataReceived += OnOutputDataReceived;
+                    dnl.Start();
+                    dnl.BeginOutputReadLine();
+
+                    while (!dnl.HasExited)
+                    {
+                        Application.DoEvents();
+                        Thread.Sleep(1);
+                    }
+
+
+
+
+                 }
+
+                else
+                {
+
+
+                }
+
+            }
+
+            if (!string.IsNullOrWhiteSpace(textBox4.Text))
+
+            {
+                string text4 = textBox4.Text;
+                Match match4 = Regex.Match(text4, @"https://play.spotify.com/user/([A-Za-z0-9_\-]+)/playlist/([A-Za-z0-9_\-]+)");
+                string user4 = match4.Groups[1].Value;
+                string playlist4 = match4.Groups[2].Value;
+
+                if (checkBox1.Checked)
+
+                {
+                    Process dnlf = new Process();
+                    dnlf.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
+                    dnlf.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user4, playlist4);
+                    dnlf.StartInfo.UseShellExecute = false;
+                    dnlf.StartInfo.RedirectStandardOutput = true;
+                    dnlf.EnableRaisingEvents = true;
+                    dnlf.StartInfo.CreateNoWindow = true;
+                    dnlf.OutputDataReceived += OnOutputDataReceived;
+                    dnlf.Start();
+                    dnlf.BeginOutputReadLine();
+
+                    while (!dnlf.HasExited)
+                    {
+                        Application.DoEvents();
+                        Thread.Sleep(1);
+                    }
+
+                }
+
+                else if (!checkBox1.Checked)
+                {
+                    Process dnl = new Process();
+                    dnl.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
+                    dnl.StartInfo.Arguments = string.Format("main.js -u {0} -p {1}", user4, playlist4);
+                    dnl.StartInfo.UseShellExecute = false;
+                    dnl.StartInfo.RedirectStandardOutput = true;
+                    dnl.EnableRaisingEvents = true;
+                    dnl.StartInfo.CreateNoWindow = true;
+                    dnl.OutputDataReceived += OnOutputDataReceived;
+                    dnl.Start();
+                    dnl.BeginOutputReadLine();
+
+                    while (!dnl.HasExited)
+                    {
+                        Application.DoEvents();
+                        Thread.Sleep(1);
+                    }
+                }
+                else
+
+                {
+
+
+
+                }
+
+            }
+
+                if (!string.IsNullOrWhiteSpace(textBox7.Text))
+
+                {
+                    string text5 = textBox7.Text;
+                    Match match5 = Regex.Match(text5, @"https://play.spotify.com/user/([A-Za-z0-9_\-]+)/playlist/([A-Za-z0-9_\-]+)");
+                    string user5 = match5.Groups[1].Value;
+                    string playlist5 = match5.Groups[2].Value;
+
+                    if (checkBox1.Checked)
+
+                    {
+                        Process dnlf = new Process();
+                        dnlf.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
+                        dnlf.StartInfo.Arguments = string.Format("main.js -f -u {0} -p {1}", user5, playlist5);
+                        dnlf.StartInfo.UseShellExecute = false;
+                        dnlf.StartInfo.RedirectStandardOutput = true;
+                        dnlf.EnableRaisingEvents = true;
+                        dnlf.StartInfo.CreateNoWindow = true;
+                        dnlf.OutputDataReceived += OnOutputDataReceived;
+                        dnlf.Start();
+                        dnlf.BeginOutputReadLine();
+
+                        while (!dnlf.HasExited)
+                        {
+                            Application.DoEvents();
+                            Thread.Sleep(1);
+                        }
+
+                    }
+
+                    else if (!checkBox1.Checked)
+                    {
+                        Process dnl = new Process();
+                        dnl.StartInfo.FileName = @"C:\Program Files\nodejs\node.exe";
+                        dnl.StartInfo.Arguments = string.Format("main.js -u {0} -p {1}", user5, playlist5);
+                        dnl.StartInfo.UseShellExecute = false;
+                        dnl.StartInfo.RedirectStandardOutput = true;
+                        dnl.EnableRaisingEvents = true;
+                        dnl.StartInfo.CreateNoWindow = true;
+                        dnl.OutputDataReceived += OnOutputDataReceived;
+                        dnl.Start();
+                        dnl.BeginOutputReadLine();
+
+                        while (!dnl.HasExited)
+                        {
+                            Application.DoEvents();
+                            Thread.Sleep(1);
+                        }
+                    }
+                    else
+
+                    {
+
+
+
+                    }
+
+                
             }
 
            if (checkBox2.Checked)
@@ -255,7 +450,37 @@ namespace Spotify_Downloader
 
             }
         }
+        void process_Exited(object sender, EventArgs e)
+        {
+            Process dnl = (Process)sender;
+            int exitCode = dnl.ExitCode;
+        }
 
+        void OnOutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            if (e.Data != null)
+            {
+                this.OutputData += e.Data + Environment.NewLine;
+                SetText(this.OutputData);
+            }
+        }
+
+        delegate void SetTextCallback(string text);
+
+        private void SetText(string text)
+        {
+            if (this.richTextBox1.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.richTextBox1.Text = text;
+            }
+
+        }
+       
         private void textBox2_TextChanged_1(object sender, EventArgs e)
         {
 
@@ -282,6 +507,48 @@ namespace Spotify_Downloader
         }
 
         private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionStart = richTextBox1.Text.Length;
+            
+            richTextBox1.ScrollToCaret();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged_2(object sender, EventArgs e)
         {
 
         }
