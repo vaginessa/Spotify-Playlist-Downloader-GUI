@@ -153,7 +153,6 @@
   <ItemGroup>
     <Content Include="logo %282%29.ico" />
     <Content Include="logo.ico" />
-    <EmbeddedResource Include="Resources\Free MP3.mp3" />
     <Content Include="Resources\logback.png" />
     <None Include="Resources\backdrop.png" />
     <None Include="Resources\loginbutton.png" />
