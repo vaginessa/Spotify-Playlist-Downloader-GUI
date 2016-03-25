@@ -169,6 +169,7 @@ namespace Spotify_Downloader
 
         private void Dnlbtn_Click(object sender, EventArgs e)
         {
+            Dnlbtn.Enabled = false;
             richTextBox1.Text = String.Empty;
             if (File.ReadAllText("main.js").Contains("USERNAME = \"USERNAME\""))
             {
@@ -488,10 +489,12 @@ namespace Spotify_Downloader
 
 
                     }
+                    
 
 
                 }
             }
+            Dnlbtn.Enabled = true;
         }
         void process_Exited(object sender, EventArgs e)
         {
